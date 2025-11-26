@@ -13,7 +13,8 @@ const config: QuartzConfig = {
     enableSPA: true,
     enablePopovers: true,
     analytics: {
-      provider: "plausible",
+      provider: "google",
+      tagId: "G-6GRC86JVBT",
     },
     locale: "ko-KR",
     baseUrl: "isitwho.github.io/vet",
