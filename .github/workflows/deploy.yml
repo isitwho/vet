@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   
   schedule:
-    - cron: '*24 * * * *' # 매 24시간마다 실행
+    - cron: '0 0 * * *' # 매일 자정에 실행
 
 permissions:
   contents: read
