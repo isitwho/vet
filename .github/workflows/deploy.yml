@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   
   schedule:
-    - cron: '0 0 * * *' # 매일 자정에 실행
+    - cron: '0 * * *' # Every hour
 
 permissions:
   contents: read
@@ -24,7 +24,8 @@ jobs:
           fetch-depth: 0
 
       - name: Clean content folder
-        run: rm -rf content/*
+        run: |
+          find content -mindepth 1 ! -name 'index.md' -delete
 
       - name: Checkout Private Vault
         uses: actions/checkout@v4
@@ -33,6 +34,7 @@ jobs:
           token: ${{ secrets.PRIVATE_VAULT_TOKEN }}
           path: content
           fetch-depth: 0
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22

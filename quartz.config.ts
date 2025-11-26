@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "ko-KR",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "isitwho.github.io/vet",
     ignorePatterns: ["Private", "Images", ".obsidian"],
     defaultDateType: "modified",
     theme: {
