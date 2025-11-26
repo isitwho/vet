@@ -1,3 +1,318 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+/* ==========================================================================
+   1. Color Variables & Theme (Vet Theme Adaptation)
+   ========================================================================== */
+
+:root {
+    /* Accent Colors Setup */
+    --accent-h: 232;
+    --accent-s: 96%;
+    --accent-l: 60%;
+
+    --color-red: rgb(221, 44, 56);
+    --color-orange: rgb(222, 116, 23);
+    --color-yellow: rgb(192, 156, 12);
+    --color-green: rgb(29, 165, 29);
+    --color-cyan: rgb(22, 166, 171);
+    --color-blue: rgb(23, 117, 217);
+    --color-purple: rgb(143, 71, 225);
+    --color-pink: rgb(221, 19, 153);
+
+    /* Accent Variations */
+    --color-accent-1: hsl(calc(var(--accent-h) - 1), calc(var(--accent-s) * 1.01), calc(var(--accent-l) * 1.075));
+    --color-accent-2: hsl(calc(var(--accent-h) - 3), calc(var(--accent-s) * 1.02), calc(var(--accent-l) * 1.15));
+    --background-modifier-border: hsla(var(--accent-h), calc(0.4*var(--accent-s)), calc(var(--accent-l)), 0.2);
+    --background-modifier-hover: hsla(var(--accent-h), 6%, 64%, 0.15);
+
+    /* Heading Accents */
+    --h1-accent-color: var(--color-red);
+    --h2-accent-color: var(--color-orange);
+    --h3-accent-color: var(--color-yellow);
+    --h4-accent-color: var(--color-green);
+    --h5-accent-color: var(--color-blue);
+    --h6-accent-color: var(--color-purple);
+
+    /* Radius */
+    --radius-s: 4px;
+    --radius-m: 8px;
+}
+
+/* Dark Mode Overrides */
+:root[saved-theme="dark"] {
+    --accent-h: 232;
+    --accent-s: 40%;
+    --accent-l: 60%;
+
+    --color-red: rgb(255, 120, 129);
+    --color-green: rgb(124, 211, 124);
+    --color-orange: rgb(251, 187, 131);
+    --color-yellow: rgb(255, 232, 139);
+    --color-cyan: rgb(134, 223, 226);
+    --color-blue: rgb(137, 189, 244);
+    --color-purple: rgb(203, 158, 255);
+    --color-pink: rgb(242, 182, 222);
+
+    --background-modifier-border: hsla(var(--accent-h), calc(0.4*var(--accent-s)), calc(0.9*var(--accent-l)), 0.2);
+    --background-modifier-hover: hsla(var(--accent-h), 12%, 40%, 0.25);
+}
+
+/* ==========================================================================
+   2. Typography & Headings (Colored Indicators)
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    padding-left: 12px;
+    /* 공간 확보 */
+}
+
+/* Heading Color Bars */
+h1::before {
+    background-color: var(--h1-accent-color);
+    height: 1.2em;
+}
+
+h2::before {
+    background-color: var(--h2-accent-color);
+    height: 1.1em;
+}
+
+h3::before {
+    background-color: var(--h3-accent-color);
+    height: 1.0em;
+}
+
+h4::before {
+    background-color: var(--h4-accent-color);
+    height: 0.9em;
+}
+
+h5::before {
+    background-color: var(--h5-accent-color);
+    height: 0.8em;
+}
+
+h6::before {
+    background-color: var(--h6-accent-color);
+    height: 0.8em;
+}
+
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Heading Underlines (Optional Style) */
+h1,
+h2 {
+    border-bottom: 1px solid var(--background-modifier-border);
+    padding-bottom: 0.3em;
+}
+
+/* Bold & Italic Colors */
+strong {
+    color: var(--color-red);
+    font-weight: 600;
+}
+
+em {
+    color: var(--color-orange);
+}
+
+/* Links */
+a {
+    color: var(--color-blue);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+a:hover {
+    background-color: var(--background-modifier-hover);
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   3. Blockquotes & Callouts
+   ========================================================================== */
+
+blockquote {
+    border-left: 3px solid var(--color-accent-1);
+    background: rgba(125, 125, 125, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+/* Quartz Callout Adaptation */
+.callout {
+    border: 1px solid var(--background-modifier-border);
+    border-left-width: 4px;
+    border-radius: 8px;
+    background-color: rgba(var(--accent-h), var(--accent-s), var(--accent-l), 0.05);
+    padding: 1em;
+    margin: 1em 0;
+}
+
+/* ==========================================================================
+   4. Lists & Checkboxes (Custom SVG Masks)
+   ========================================================================== */
+
+ul {
+    list-style: none;
+    /* Remove default bullets to use custom ones if needed */
+    padding-left: 1.5em;
+}
+
+li {
+    position: relative;
+}
+
+/* Basic Bullet */
+ul>li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-accent-1);
+    position: absolute;
+    left: -1em;
+    top: 0.7em;
+}
+
+/* Task List Checkboxes */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--text-muted);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    margin-right: 6px;
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:hover {
+    border-color: var(--color-accent-1);
+    background-color: var(--background-modifier-hover);
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+}
+
+/* Checkmark SVG Mask */
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='black' d='M15.53 2.41a1.5 1.5 0 0 1 .06 2.12l-8.5 9a1.501 1.501 0 0 1-2.15.03l-4.5-4.5a1.5 1.5 0 0 1 2.12-2.12l3.41 3.408 7.44-7.878a1.5 1.5 0 0 1 2.12-.06Z'/%3e%3c/svg%3e");
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='black' d='M15.53 2.41a1.5 1.5 0 0 1 .06 2.12l-8.5 9a1.501 1.501 0 0 1-2.15.03l-4.5-4.5a1.5 1.5 0 0 1 2.12-2.12l3.41 3.408 7.44-7.878a1.5 1.5 0 0 1 2.12-.06Z'/%3e%3c/svg%3e");
+    -webkit-mask-size: 12px;
+    mask-size: 12px;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+/* Alternative Checkboxes (Basic implementation) */
+li[data-task="!"]>input[type="checkbox"] {
+    border-color: var(--color-orange);
+    background-color: rgba(255, 165, 0, 0.1);
+}
+
+li[data-task="?"]>input[type="checkbox"] {
+    border-color: var(--color-pink);
+    background-color: rgba(255, 192, 203, 0.1);
+}
+
+/* ==========================================================================
+   5. Code Blocks & Inline Code
+   ========================================================================== */
+
+code {
+    font-family: var(--font-code);
+    background-color: var(--background-modifier-hover);
+    color: var(--color-pink);
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
+}
+
+pre {
+    background-color: var(--background-primary);
+    border: 1px dashed var(--background-modifier-border);
+    border-radius: 8px;
+    padding: 1em;
+}
+
+/* ==========================================================================
+   6. Layout Tweaks (Card-like feel)
+   ========================================================================== */
+
+/* Main Content Area */
+.page {
+    background-color: var(--background-primary);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+thead tr {
+    background-color: var(--background-modifier-hover);
+}
+
+th,
+td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+/* Tags */
+a.internal-tag,
+a.tag {
+    color: var(--color-accent-1);
+    background-color: hsla(var(--accent-h), var(--accent-s), 90%, 0.5);
+    border: 1px solid hsla(var(--accent-h), var(--accent-s), 80%, 0.5);
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+:root[saved-theme="dark"] a.internal-tag,
+:root[saved-theme="dark"] a.tag {
+    background-color: hsla(var(--accent-h), var(--accent-s), 20%, 0.5);
+    border-color: hsla(var(--accent-h), var(--accent-s), 30%, 0.5);
+}
