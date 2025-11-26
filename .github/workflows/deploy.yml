@@ -23,17 +23,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clean content folder
-        run: |
-          find content -mindepth 1 ! -name 'index.md' -delete
-
       - name: Checkout Private Vault
         uses: actions/checkout@v4
         with:
           repository: isitwho/obsidian_vet
           token: ${{ secrets.PRIVATE_VAULT_TOKEN }}
-          path: content
+          path: temp_content
           fetch-depth: 0
+
+      - name: Sync content
+        run: |
+          rsync -av --delete --exclude='index.md' --exclude='.git' temp_content/ content/
+          rm -rf temp_content
 
       - uses: actions/setup-node@v4
         with:
