@@ -6,7 +6,7 @@ on:
       - v4  
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # Every hour
+    - cron: '0 * * * *' # Every hour
 
 permissions:
   contents: read
@@ -35,8 +35,11 @@ jobs:
 
       - name: Sync content
         run: |
-          rsync -av --delete --exclude='index.md' --exclude='.git' temp_content/ content/
+          find content/ -mindepth 1 ! -name 'index.md' -delete
+          rsync -av --exclude='.git' temp_content/ content/
           rm -rf temp_content
+          export TZ='Asia/Seoul'
+          echo -e "\n\n_Last Update: $(date '+%Y-%m-%d %H:%M:%S')_" >> content/index.md
 
       - uses: actions/setup-node@v4
         with:
