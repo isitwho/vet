@@ -352,6 +352,10 @@ a.tag {
 
     .recent-ul {
         padding-left: 0;
+
+        li {
+            margin-bottom: 0.2rem;
+        }
     }
 
     .recent-ul>li::before {
