@@ -186,13 +186,22 @@ li {
 
 ul>li::before {
     content: "";
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background-color: var(--color-accent-1);
     position: absolute;
-    left: 1em;
+    left: -1em;
     top: 0.6em;
+}
+
+ol {
+    padding-left: 1.5em;
+    margin: 1em 0;
+}
+
+ol li {
+    padding-left: 0.5em;
 }
 
 /* Task List Checkboxes */
@@ -313,4 +322,71 @@ a.tag {
 :root[saved-theme="dark"] a.tag {
     background-color: hsla(var(--accent-h), var(--accent-s), 20%, 0.5);
     border-color: hsla(var(--accent-h), var(--accent-s), 30%, 0.5);
+}
+
+/* ==========================================================================
+   7. Component Specific Overrides
+   ========================================================================== */
+
+/* Recent Notes */
+.recent-notes {
+    .section {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .recent-ul {
+        padding-left: 0;
+    }
+
+    .recent-ul>li::before {
+        content: none;
+    }
+}
+
+/* Footer */
+footer {
+    ul {
+        padding-left: 0;
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    li {
+        list-style: none;
+
+        &::before {
+            content: none !important;
+        }
+    }
+
+    a {
+        color: var(--text-muted);
+        font-weight: 500;
+
+        &:hover {
+            color: var(--color-accent-1);
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Explorer */
+.explorer {
+    .folder-outer {
+        ul {
+            li {
+                margin-bottom: 0.4em;
+                /* Increase spacing between file list items */
+
+                &::before {
+                    content: none;
+                }
+            }
+        }
+    }
 }

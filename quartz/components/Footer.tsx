@@ -19,7 +19,7 @@ export default ((opts?: Options) => {
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
-            <li style={{ listStyle: "none" }}>
+            <li>
               <a href={link}>{text}</a>
             </li>
           ))}
