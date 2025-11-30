@@ -52,7 +52,7 @@ export function byDateAndAlphabeticalFolderFirst(cfg: GlobalConfiguration): Sort
   }
 }
 
-export function byAlphabeticalFolderFirst(_cfg: GlobalConfiguration): SortFn {
+export function byNumericTitleFolderFirst(_cfg: GlobalConfiguration): SortFn {
   return (f1, f2) => {
     // Sort folders first
     const f1IsFolder = isFolderPath(f1.slug ?? "")
@@ -60,9 +60,29 @@ export function byAlphabeticalFolderFirst(_cfg: GlobalConfiguration): SortFn {
     if (f1IsFolder && !f2IsFolder) return -1
     if (!f1IsFolder && f2IsFolder) return 1
 
-    // otherwise, sort lexographically by title
     const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
     const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
+
+    const f1Match = f1Title.match(/^(\d+)\./)
+    const f2Match = f2Title.match(/^(\d+)\./)
+
+    if (f1Match && !f2Match) {
+      return 1
+    }
+
+    if (!f1Match && f2Match) {
+      return -1
+    }
+
+    if (f1Match && f2Match) {
+      const n1 = parseInt(f1Match[1], 10)
+      const n2 = parseInt(f2Match[1], 10)
+      if (n1 !== n2) {
+        return n1 - n2
+      }
+      return f1Title.localeCompare(f2Title)
+    }
+
     return f1Title.localeCompare(f2Title)
   }
 }
@@ -73,7 +93,7 @@ type Props = {
 } & QuartzComponentProps
 
 export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
-  const sorter = sort ?? byAlphabeticalFolderFirst(cfg)
+  const sorter = sort ?? byNumericTitleFolderFirst(cfg)
   let list = allFiles.sort(sorter)
   if (limit) {
     list = list.slice(0, limit)
