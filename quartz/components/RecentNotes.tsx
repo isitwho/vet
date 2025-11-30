@@ -46,12 +46,12 @@ export default ((userOpts?: Partial<Options>) => {
             return (
               <li class="recent-li">
                 <div class="section">
-                  <div class="desc" style={{ gap: "1rem" }}>
-                    <h3>
+                  <div class="desc" style={{ display: "flex", gap: "1rem" }}>
+                    <h5>
                       <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
                         {title}
                       </a>
-                    </h3>
+                    </h5>
                     {page.dates && (
                       <p class="meta">
                         <Date date={getDate(cfg, page)!} locale={cfg.locale} />
