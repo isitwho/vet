@@ -5,20 +5,11 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [
-    Component.ConditionalRender({
-      component: Component.RecentNotes({
-        title: "Recently Modified",
-        limit: 5,
-        filter: (f) => f.slug !== "index",
-      }),
-      condition: (page) => page.fileData.slug === "index",
-    }),
-  ],
+  afterBody: [],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/isitwho",
-      // "Discord Community": "https://discord.gg/cRFFHYye7t",
+      Instagram: "https://www.instagram.com/jihu.o0/",
     },
   }),
 }
