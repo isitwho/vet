@@ -177,7 +177,7 @@ blockquote {
 
 ul {
     list-style: none;
-    padding-left: 1.5em;
+    padding-left: 1rem;
 }
 
 li {
@@ -196,7 +196,7 @@ ul>li::before {
 }
 
 ol {
-    padding-left: 1.5em;
+    padding-left: 1rem;
     margin: 1em 0;
 }
 
@@ -335,6 +335,17 @@ a.tag {
         flex-direction: row;
         align-items: center;
         gap: 1em;
+
+        h5 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .meta {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
     }
 
     .recent-ul {
@@ -350,6 +361,7 @@ a.tag {
 footer {
     ul {
         padding-left: 0;
+        list-style: none;
         display: flex;
         gap: 1.5rem;
         justify-content: center;
@@ -358,15 +370,18 @@ footer {
 
     li {
         list-style: none;
+        display: inline-block;
 
         &::before {
             content: none !important;
+            display: none;
         }
     }
 
     a {
         color: var(--text-muted);
         font-weight: 500;
+        text-decoration: none;
 
         &:hover {
             color: var(--color-accent-1);
@@ -377,14 +392,20 @@ footer {
 
 /* Explorer */
 .explorer {
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
     .folder-outer {
         ul {
             li {
-                margin-bottom: 0.4em;
+                margin-bottom: 0.8em;
                 /* Increase spacing between file list items */
 
                 &::before {
-                    content: none;
+                    content: none !important;
+                    display: none;
                 }
             }
         }
