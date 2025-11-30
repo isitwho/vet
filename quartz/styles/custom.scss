@@ -121,7 +121,7 @@ h6::before {
 
 /* Heading Underlines (Optional Style) */
 h1,
-h2 {
+h3 {
     border-bottom: 1px solid var(--background-modifier-border);
     padding-bottom: 0.3em;
 }
@@ -162,14 +162,14 @@ blockquote {
 }
 
 /* Quartz Callout Adaptation */
-.callout {
-    border: 1px solid var(--background-modifier-border);
-    border-left-width: 4px;
-    border-radius: 8px;
-    background-color: rgba(var(--accent-h), var(--accent-s), var(--accent-l), 0.05);
-    padding: 1em;
-    margin: 1em 0;
-}
+// .callout {
+//     border: 1px solid var(--background-modifier-border);
+//     border-left-width: 4px;
+//     border-radius: 8px;
+//     background-color: rgba(var(--accent-h), var(--accent-s), var(--accent-l), 0.05);
+//     padding: 1em;
+//     margin: 1em 0;
+// }
 
 /* ==========================================================================
    4. Lists & Checkboxes (Custom SVG Masks)
