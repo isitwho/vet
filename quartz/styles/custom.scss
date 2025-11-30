@@ -187,13 +187,10 @@ li {
 /* Basic Bullet */
 ul>li::before {
     content: "";
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background-color: var(--color-accent-1);
-    position: absolute;
-    left: -1em;
-    top: 0.7em;
 }
 
 /* Task List Checkboxes */
