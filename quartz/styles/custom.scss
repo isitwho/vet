@@ -338,11 +338,13 @@ a.tag {
 
         h5 {
             margin: 0;
+            padding: 0;
             font-size: 1rem;
         }
 
         .meta {
             margin: 0;
+            padding: 0;
             font-size: 0.8rem;
             color: var(--text-muted);
         }
@@ -362,30 +364,15 @@ footer {
     ul {
         padding-left: 0;
         list-style: none;
-        display: flex;
-        gap: 1.5rem;
-        justify-content: center;
-        margin-top: 1rem;
+        gap: 1rem;
     }
 
     li {
         list-style: none;
-        display: inline-block;
 
         &::before {
             content: none !important;
             display: none;
-        }
-    }
-
-    a {
-        color: var(--text-muted);
-        font-weight: 500;
-        text-decoration: none;
-
-        &:hover {
-            color: var(--color-accent-1);
-            text-decoration: underline;
         }
     }
 }
@@ -399,9 +386,10 @@ footer {
 
     .folder-outer {
         ul {
+            margin-bottom: 0.6em;
+
             li {
-                margin-bottom: 0.8em;
-                /* Increase spacing between file list items */
+                margin-bottom: 0.6em;
 
                 &::before {
                     content: none !important;
