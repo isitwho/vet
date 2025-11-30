@@ -45,7 +45,7 @@ export default ((userOpts?: Partial<Options>) => {
 
             return (
               <li class="recent-li">
-                <div class="section">
+                <div class="section" style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "1em" }}>
                   <div class="desc">
                     <h5>
                       <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">

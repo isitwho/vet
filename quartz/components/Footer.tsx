@@ -17,9 +17,9 @@ export default ((opts?: Options) => {
           {i18n(cfg.locale).components.footer.createdWith}{" "}
           <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a> © {year}
         </p>
-        <ul style={{ listStyle: "none" }}>
+        <ul>
           {Object.entries(links).map(([text, link]) => (
-            <li>
+            <li style={{ listStyle: "none" }}>
               <a href={link}>{text}</a>
             </li>
           ))}
