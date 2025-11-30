@@ -177,20 +177,22 @@ blockquote {
 
 ul {
     list-style: none;
-    padding-left: 1.5em;
+    /* padding-left: 1.5em; */
 }
 
 li {
     position: relative;
 }
 
-/* Basic Bullet */
 ul>li::before {
     content: "";
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background-color: var(--color-accent-1);
+    position: absolute;
+    left: -0.8em;
+    top: 0.5em;
 }
 
 /* Task List Checkboxes */
