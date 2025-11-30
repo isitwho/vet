@@ -36,6 +36,12 @@ jobs:
       - name: Sync content
         run: |
           find content/ -mindepth 1 ! -name 'index.md' -delete
+          
+          # Restore timestamps in temp_content
+          cd temp_content
+          git ls-files -z | xargs -0 -n1 -I{} bash -c 'touch -d @$(git log -1 --format=%ct -- "{}") "{}"'
+          cd ..
+          
           rsync -av --exclude='.git' temp_content/ content/
           rm -rf temp_content
           export TZ='Asia/Seoul'
