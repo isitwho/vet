@@ -112,11 +112,11 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
                 {page.dates && <Date date={getDate(cfg, page)!} locale={cfg.locale} />}
               </p>
               <div class="desc">
-                <h5>
+                <h3 style={{ fontSize: "1rem" }}>
                   <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">
                     {title}
                   </a>
-                </h5>
+                </h3>
               </div>
               <ul class="tags">
                 {tags.map((tag) => (
