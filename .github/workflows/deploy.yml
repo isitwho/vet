@@ -6,7 +6,7 @@ on:
       - v4  
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *' # Every hour
+    - cron: '0 11 11 11 11 ?' # Every hour
 
 permissions:
   contents: read
